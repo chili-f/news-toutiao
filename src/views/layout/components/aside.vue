@@ -43,9 +43,10 @@
 
 <script>
 export default {
+  props:['is-collapse'],
   data() {
     return {
-      isCollapse: true,
+      // isCollapse: false,
     };
   },
   methods: {},
