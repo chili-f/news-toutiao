@@ -61,16 +61,25 @@
         class="list-table"
         size="mini"
       >
-        <el-table-column prop="" label="封面"> </el-table-column>
+        <el-table-column prop="" label="封面"> 
+            <template slot-scope="scope">
+                <!-- 错误写法 -->
+              <!-- <img class="article-cover" :src="scope.row.cover.images[0] || 'no-cover.jpeg'" /> -->
+              <img class="article-cover" v-if='scope.row.cover.images[0]' :src="scope.row.cover.images[0]" />
+              <img class="article-cover" v-else src="no-cover.jpg'" alt='替换图片'/>
+            
+            </template>
+        </el-table-column>
         <el-table-column prop="title" label="标题"> </el-table-column>
         <el-table-column label="状态">
           <!-- 如果需要在自定义模版中使用当前遍历项，就在template上声明slot-scope='scope' -->
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.status === 0" type="warning">草稿</el-tag>
-            <el-tag v-else-if="scope.row.status === 1">待审核</el-tag>
-            <el-tag v-else-if="scope.row.status === 2" type="success">审核通过</el-tag>
-            <el-tag v-else-if="scope.row.status === 3" type="danger">审核失败</el-tag>
-            <el-tag v-else-if="scope.row.status === 4">已删除</el-tag>
+              <el-tag :type="articleStatus[scope.row.status].type">{{articleStatus[scope.row.status].text}}</el-tag>
+              <!-- <el-tag>{{scope.row.status}}</el-tag>  2 -->
+            <!--  <el-tag v-else-if="scope.row.status === 1">待审核</el-tag>
+            <el-tag v-else-if="scope.row.status === 2">审核通过</el-tag>
+            <el-tag v-else-if="scope.row.status === 3">审核失败</el-tag>
+            <el-tag v-else-if="scope.row.status === 4">已删除</el-tag> -->
           </template>
         </el-table-column>
         <el-table-column prop="pubdate" label="发布时间"> </el-table-column>
@@ -114,29 +123,14 @@ export default {
         resource: "",
         desc: "",
       },
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄",
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄",
-        },
-      ],
       articles: [], //文章数据列表
+      articleStatus: [
+        {status:0, text: "草稿" , type:"info"},
+        {status:1, text: "待审核" , type:""},
+        {status:2, text: "审核通过" , type:"success"},
+        {status:3, text: "审核失败", type:"warning"},
+        {status:4, text: "已删除" , type:"danger"}
+      ],
     };
   },
   created() {
@@ -162,5 +156,10 @@ export default {
 }
 .list-table {
   margin-bottom: 20px;
+}
+.article-cover {
+    width: 100px;
+    height: 80px;
+    /* background-size: cover; */
 }
 </style>
