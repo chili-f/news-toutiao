@@ -4,6 +4,10 @@ import Login from '../views/login'
 import Home from '../views/home'
 import Layout from '../views/layout'
 import Article from '../views/article'
+import Publish from '../views/publish'
+import Image from '../views/image'
+import Comment from '../views/comment'
+import Settings from '../views/settings'
 
 Vue.use(VueRouter)
 
@@ -19,7 +23,7 @@ const routes = [
     //正确的做法是： 如果有默认自路由，就不要给父路由起名字了
     // name: 'layout',
     component: Layout,
-    children:[
+    children: [
       {
         path: '',//path为空，会作为默认子路由渲染
         name: 'home',
@@ -29,10 +33,30 @@ const routes = [
         path: '/article',//内容管理
         name: 'article',
         component: Article
+      },
+      {
+        path: '/publish',//内容管理
+        name: 'publish',
+        component: Publish
+      },
+      {
+        path: '/image',//内容管理
+        name: 'image',
+        component: Image
+      },
+      {
+        path: '/comment',//内容管理
+        name: 'comment',
+        component: Comment
+      },
+      {
+        path: '/settings',//内容管理
+        name: 'settings',
+        component: Settings
       }
     ]
   },
-  
+
 ]
 
 const router = new VueRouter({
@@ -49,17 +73,17 @@ router.beforeEach((to, from, next) => {
   //如果登陆来，则允许通过
   // 允许通过next()
 
-   const user = JSON.parse(window.localStorage.getItem('user'))
+  const user = JSON.parse(window.localStorage.getItem('user'))
   //校验非登陆页面的登陆状态
-  if(to.path != '/login'){
-     if(user){
-       //已登陆，可以通过
-       next()
-     }else {
-       //没有登陆跳转到登陆页面
-       next('/login')
-     }
-  }else {
+  if (to.path != '/login') {
+    if (user) {
+      //已登陆，可以通过
+      next()
+    } else {
+      //没有登陆跳转到登陆页面
+      next('/login')
+    }
+  } else {
     //登陆页面放行
     next()
   }

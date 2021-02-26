@@ -2,14 +2,12 @@
   <!-- 
     el-menu-item 的 index 不能重复  确保唯一即可
  -->
-  <el-menu
-    default-active="/"
-    background-color="#002033"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-    router
-    :collapse="isCollapse"
-  >
+  <el-menu :default-active="$route.path"
+           background-color="#002033"
+           text-color="#fff"
+           active-text-color="#ffd04b"
+           router
+           :collapse="isCollapse">
     <el-menu-item index="/">
       <i class="el-icon-setting"></i>
       <span slot="title">首页</span>
@@ -43,18 +41,23 @@
 
 <script>
 export default {
-  props:['is-collapse'],
-  data() {
+  props: ['is-collapse'],
+  data () {
     return {
       // isCollapse: false,
     };
   },
-  methods: {},
+  mounted () {
+    this.$parent.runTime = new Date()
+  },
+  methods: {
+
+  },
 };
 </script>
 
 <style>
-.el-menu{
-  border:none!important;
-} 
+.el-menu {
+  border: none !important;
+}
 </style>

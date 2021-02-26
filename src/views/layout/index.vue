@@ -1,7 +1,8 @@
 <template>
   <el-container class="layout-container">
     <el-aside width="auto">
-      <AppAside :is-collapse="isCollapse" class="aside-menu" />
+      <AppAside :is-collapse="isCollapse"
+                class="aside-menu" />
     </el-aside>
     <el-container>
       <el-header class="header">
@@ -13,18 +14,19 @@
                true: 作用类名
                false：不作用类名
            -->
-          <i
-            :class="{
+          <i :class="{
               'el-icon-s-fold': isCollapse,
               'el-icon-s-unfold': !isCollapse,
             }"
-            @click="isCollapse = !isCollapse"
-          ></i>
+             @click="isCollapse = !isCollapse"></i>
           <span>快报后台管理系统</span>
+          {{runTime}}
         </div>
         <el-dropdown>
           <div class="avatar-wrap">
-            <img :src="user.photo" class="avatar" alt="" />
+            <img :src="user.photo"
+                 class="avatar"
+                 alt="" />
             <span>{{ user.name }}</span>
             <i class="el-icon-arrow-down el-icon--right"></i>
           </div>
@@ -45,30 +47,40 @@
 <script>
 import AppAside from "./components/aside";
 import { getUserProfile } from "@/api/user";
+import globalBus from '@/utils/global-bus.js';
+
 export default {
-  data() {
+  data () {
     return {
       user: {}, //当前登陆的用户信息
       isCollapse: false, //侧边菜单栏的展开状态
+      runTime: '111'
     };
   },
   components: {
     AppAside,
   },
-  created() {
+  created () {
     // 组件初始化好，请求获取用户资料
     this.loadUserProfile();
+    // 这样里面就能拿到this
+    // 监听事件  注册自定义事件   这个函数只有当这个事件发布以后，这个注册函数就会被调用
+    globalBus.$on('update-user', (data) => {
+      console.log('user', data);
+      this.user.name = data.name
+      this.user.photo = data.photo
+    })
   },
   methods: {
     //   除了登陆接口，其他所有接口都需要授权才能请求使用
     // 或者说，除了登陆接口，其他接口都需要提供你的身份令牌才能获取数据
-    loadUserProfile() {
+    loadUserProfile () {
       getUserProfile().then((res) => {
         this.user = res.data.data;
       });
     },
     // 退出登陆
-    onLogout() {
+    onLogout () {
       this.$confirm("确定退出吗?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

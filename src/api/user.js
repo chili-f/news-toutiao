@@ -13,7 +13,7 @@ export const login = data => {
 
 // 获取用户信息
 export const getUserProfile = () => {
-     return request({
+    return request({
         method: 'GET',
         url: '/mp/v1_0/user/profile',
         // 后端要求把需要授权的用户身份放到请求头中
@@ -26,5 +26,24 @@ export const getUserProfile = () => {
         // }
     })
 }
+// 修改用户头像
+// 注意：data必须传递FormData对象
+export const updateUserPhoto = data => {
+    return request({
+        method: "PATCH",
+        url: "/mp/v1_0/user/photo",
+        // data 用来设置 POST 请求体
+        data
+    })
+}
 
-// 修改用户信息
+// 修改用户基本信息
+// 注意：data必须传递FormData对象
+export const updateUserProfile = data => {
+    return request({
+        method: "PATCH",
+        url: "/mp/v1_0/user/profile",
+        // data 用来设置 POST 请求体
+        data
+    })
+}
