@@ -8,6 +8,7 @@ import Publish from '../views/publish'
 import Image from '../views/image'
 import Comment from '../views/comment'
 import Settings from '../views/settings'
+import fans from '../views/fans'
 
 Vue.use(VueRouter)
 
@@ -35,22 +36,27 @@ const routes = [
         component: Article
       },
       {
-        path: '/publish',//内容管理
+        path: '/publish',//素材管理
         name: 'publish',
         component: Publish
       },
       {
-        path: '/image',//内容管理
+        path: '/image',//发布文章
         name: 'image',
         component: Image
       },
       {
-        path: '/comment',//内容管理
+        path: '/comment',//评论管理
         name: 'comment',
         component: Comment
       },
       {
-        path: '/settings',//内容管理
+        path: '/fans',//粉丝管理
+        name: 'fans',
+        component: fans
+      },
+      {
+        path: '/settings',//个人管理
         name: 'settings',
         component: Settings
       }
