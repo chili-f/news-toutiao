@@ -1,8 +1,18 @@
 <template>
-  <div class="fans-container">
-    <!-- 1、为ECharts准备一个具备大小（宽高）的Dom -->
-    <div ref="main" style="width: 800px;height:500px;"></div>
-  </div>
+  <el-card class="box-card">
+      <div slot="header"
+           class="clearfix">
+        <!-- 面包屑 -->
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+          <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>粉丝管理</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
+    <div class="fans-container">
+      <!-- 1、为ECharts准备一个具备大小（宽高）的Dom -->
+      <div ref="main" style="width: 800px;height:500px;"></div>
+    </div>
+  </el-card>
 </template>
 
 <script>
@@ -11,7 +21,7 @@ import * as echarts from 'echarts';
 export default {
   data() {
     return {
-    
+
     }
   },
   mounted() {
