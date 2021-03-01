@@ -9,11 +9,11 @@
            router
            :collapse="isCollapse">
     <el-menu-item index="/">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>
     </el-menu-item>
     <el-menu-item index="/article">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-s-marketing"></i>
       <span slot="title">内容管理</span>
     </el-menu-item>
     <el-menu-item index="/image">
@@ -29,11 +29,11 @@
       <span slot="title">评论管理</span>
     </el-menu-item>
     <el-menu-item index="/fans">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-thumb"></i>
       <span slot="title">粉丝管理</span>
     </el-menu-item>
     <el-menu-item index="/settings">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-user-solid"></i>
       <span slot="title">个人设置</span>
     </el-menu-item>
   </el-menu>

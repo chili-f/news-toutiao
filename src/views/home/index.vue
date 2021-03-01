@@ -17,7 +17,7 @@ export default {
 
 <style>
 .img-bg {
-  width: 1300px;
+  width: 98%;
   height: 600px;
 }
 .img-bg img {

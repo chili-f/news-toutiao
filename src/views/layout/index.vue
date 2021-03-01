@@ -19,8 +19,7 @@
               'el-icon-s-unfold': !isCollapse,
             }"
              @click="isCollapse = !isCollapse"></i>
-          <span>快报后台管理系统</span>
-          {{runTime}}
+          <span class="title">快报后台管理系统</span>
         </div>
         <el-dropdown>
           <div class="avatar-wrap">
@@ -91,7 +90,7 @@ export default {
             type: "success",
             message: "退出成功!",
           });
-          // 把用户的登陆状态清楚
+          // 把用户的登陆状态清除
           window.localStorage.removeItem("user");
           //跳转到登陆页面
           this.$router.push("/login");
@@ -108,6 +107,10 @@ export default {
 </script>
 
 <style>
+.title {
+  display: inline-block;
+  margin-left: 10px;
+}
 .layout-container {
   position: fixed;
   left: 0;

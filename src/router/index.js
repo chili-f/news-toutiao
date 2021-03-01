@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/',
     //命名路由layout有一个默认路由，这个名字没有意义
-    //正确的做法是： 如果有默认自路由，就不要给父路由起名字了
+    //正确的做法是： 如果有默认子路由，就不要给父路由起名字了
     // name: 'layout',
     component: Layout,
     children: [
